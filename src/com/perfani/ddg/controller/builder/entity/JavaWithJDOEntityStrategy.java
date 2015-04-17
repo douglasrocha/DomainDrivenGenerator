@@ -4,7 +4,7 @@ import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
 import com.perfani.ddg.utils.StringService;
 
-public class JavaWithJDOStrategy implements IEntityBuilderStrategy
+public class JavaWithJDOEntityStrategy implements IEntityBuilder
 {
     @Override
     public String execute(Entity entity)
@@ -84,7 +84,7 @@ public class JavaWithJDOStrategy implements IEntityBuilderStrategy
         StringBuilder output = new StringBuilder();
         String firstLetterToUpper = StringService.getFirstCharToUpper(field.getName());
         
-        output.append("\t/**\n * @return the " + field.getName() + "\n\t */\n");
+        output.append("\t/**\n\t * @return the " + field.getName() + "\n\t */\n");
         output.append("\tpublic " + field.getType() + " get" + firstLetterToUpper + "()");
         output.append("\n\t{\n");
         output.append("\t\treturn " + field.getName() + ";");
@@ -98,10 +98,10 @@ public class JavaWithJDOStrategy implements IEntityBuilderStrategy
         StringBuilder output = new StringBuilder();
         String firstLetterToUpper = StringService.getFirstCharToUpper(field.getName());
         
-        output.append("\t/**\n * @param sets the " + field.getName() + "\n\t */\n");
+        output.append("\t/**\n\t * @param sets the " + field.getName() + "\n\t */\n");
         output.append("\tpublic void set" + firstLetterToUpper + "(" + field.getType() + " " + field.getName() + ")");
         output.append("\n\t{\n");
-        output.append("this." + field.getName() + " = " + field.getName() + ";");
+        output.append("\t\tthis." + field.getName() + " = " + field.getName() + ";");
         output.append("\n\t}\n\n");
         
         return output.toString();
