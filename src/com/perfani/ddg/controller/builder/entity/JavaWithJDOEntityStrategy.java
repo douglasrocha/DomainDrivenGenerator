@@ -59,17 +59,15 @@ public class JavaWithJDOEntityStrategy implements IEntityBuilder
     {
         StringBuilder output = new StringBuilder();
         
-        // Keys
-        for (Field key : entity.getKeys())
-        {
-            output.append("\t@PrimaryKey\n");
-            output.append("\t@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)\n");
-            output.append("\tprivate " + key.getType() + " " + key.getName() + ";\n");
-            output.append("\n");
-        }
+        Field key = entity.getKey();
+        output.append("\t@PrimaryKey\n");
+        output.append("\t@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)\n");
+        output.append("\tprivate " + key.getType() + " " + key.getName() + ";\n");
+        output.append("\n");
+        
         
         // Fields
-        for (Field field : entity.getKeys())
+        for (Field field : entity.getFields())
         {
             output.append("\t@Persistent\n");
             output.append("\tprivate " + field.getType() + " " + field.getName() + ";\n");
@@ -111,15 +109,12 @@ public class JavaWithJDOEntityStrategy implements IEntityBuilder
     {
         StringBuilder output = new StringBuilder();
         
-        // Keys
-        for (Field key : entity.getKeys())
-        {
-            output.append(getSingleGetMethod(key));
-            output.append(getSingleSetMethod(key));
-        }
+        // Key
+        output.append(getSingleGetMethod(entity.getKey()));
+        output.append(getSingleSetMethod(entity.getKey()));
         
         // Fields
-        for (Field field : entity.getKeys())
+        for (Field field : entity.getFields())
         {
             output.append(getSingleGetMethod(field));
             output.append(getSingleSetMethod(field));

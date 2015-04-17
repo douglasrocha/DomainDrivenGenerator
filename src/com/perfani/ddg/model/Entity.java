@@ -6,7 +6,7 @@ public class Entity
 {
     private String name;
     
-    private ArrayList<Field> keys;
+    private Field key;
     
     private ArrayList<Field> fields;
 
@@ -29,17 +29,17 @@ public class Entity
     /**
      * @return the keys
      */
-    public ArrayList<Field> getKeys()
+    public Field getKey()
     {
-        return keys;
+        return key;
     }
 
     /**
      * @param keys the keys to set
      */
-    public void setKeys(ArrayList<Field> keys)
+    public void setKey(Field key)
     {
-        this.keys = keys;
+        this.key = key;
     }
 
     /**

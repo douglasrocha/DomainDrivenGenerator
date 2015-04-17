@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.perfani.ddg.exceptions.EntityNotFoundException;
+import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
@@ -20,8 +21,9 @@ public class Parser
      * 
      * @param fileContent
      * @return
+     * @throws InvalidKeyAmountException 
      */
-    public List<Entity> GetAllEntities(String fileContent)
+    public List<Entity> GetAllEntities(String fileContent) throws InvalidKeyAmountException
     {
         // Creates empty output list
         List<Entity> listEntity = new ArrayList<Entity>();
@@ -33,7 +35,6 @@ public class Parser
         for (String strEntity : listEntityStr)
         {
             Entity entity = new Entity();
-            ArrayList<Field> entityKeys = new ArrayList<Field>();
             ArrayList<Field> entityFields = new ArrayList<Field>();
             
             // Splits string using | character
@@ -45,19 +46,18 @@ public class Parser
             // Adds keys to entity
             List<String> listKeysStr = RegexService.getMatches(explodedStr[1], wordPattern);
             
-            for (String key : listKeysStr)
-            {
-                // Splits key with : separator
-                String[] explodedKey = key.split("[:]");
-                
-                Field field = new Field();
-                field.setName(explodedKey[0].trim());
-                field.setType(explodedKey[1].trim());
-                
-                entityKeys.add(field);
-            }
+            if (listKeysStr.size() != 1) throw new InvalidKeyAmountException();
             
-            entity.setKeys(entityKeys);
+            String entityKey = (String) listKeysStr.toArray()[0];
+            
+            // Splits key with : separator
+            String[] explodedKey = entityKey.split("[:]");
+            
+            Field key = new Field();
+            key.setName(explodedKey[0].trim());
+            key.setType(explodedKey[1].trim());            
+            
+            entity.setKey(key);
             
             // Adds attributes to entity
             List<String> listAttrStr = RegexService.getMatches(explodedStr[2], wordPattern);

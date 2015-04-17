@@ -14,27 +14,26 @@ public class TempTest
         Entity e1 = new Entity();
         e1.setName("User");
         
-        // Keys
-        ArrayList<Field> listKey = new ArrayList<Field>();
-        
+        // Keys        
         Field f1 = new Field();
+        f1.setType("int");
         f1.setName("id");
-        
-        listKey.add(f1);
         
         // Fields
         ArrayList<Field> listField = new ArrayList<Field>();       
         
         Field f2 = new Field();
+        f2.setType("String");
         f2.setName("username");
         listField.add(f2);
         
         Field f3 = new Field();
+        f3.setType("String");
         f3.setName("password");
         listField.add(f3);
         
         // Adds lists to entity
-        e1.setKeys(listKey);
+        e1.setKey(f1);
         e1.setFields(listField);
         
         EntityBuilder builder = new EntityBuilder(new JavaWithJDOEntityStrategy());
