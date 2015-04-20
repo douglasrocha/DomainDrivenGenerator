@@ -42,7 +42,7 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
     {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("public interface I" + entity + "Repository");
+        sb.append("public interface I" + entity.getName() + "Repository");
         sb.append("\n\textends IRepositoryBase<" + entity.getName() + ">");
         sb.append("\n{\n\n}");
         

@@ -56,14 +56,17 @@ public class TempTest
         
         System.out.println("==============ENTITY==============");
         System.out.println(output);
-        System.out.println("==============REPOSITORY==============");
+        System.out.println("==============I_REPOSITORY==============");
         System.out.println(rout[0]);
+        System.out.println("==============REPOSITORY==============");
         System.out.println(rout[1]);
-        System.out.println("==============SERVICE==============");
+        System.out.println("==============I_SERVICE==============");
         System.out.println(sout[0]);
+        System.out.println("==============SERVICE==============");
         System.out.println(sout[1]);
-        System.out.println("==============APPSERVICE==============");
+        System.out.println("==============I_APPSERVICE==============");
         System.out.println(aout[0]);
+        System.out.println("==============APPSERVICE==============");
         System.out.println(aout[1]);
     }
 }
