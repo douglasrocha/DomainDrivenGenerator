@@ -4,5 +4,5 @@ import com.perfani.ddg.model.Entity;
 
 public interface IRepositoryBuilder
 {
-    String execute(Entity entity);
+    String[] execute(Entity entity);
 }
