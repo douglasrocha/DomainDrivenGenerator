@@ -1,7 +1,6 @@
 package com.perfani.ddg.controller.builder.repository;
 
 import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.utils.StringService;
 
 public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
 {
@@ -31,25 +30,19 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
     
     private String getInterfacePackage()
     {
-        return "package com.company.app.domain.interfaces.services;";
+        return "package com.company.app.domain.interfaces.repositories;";
     }
     
     private String getInterfaceImports(Entity entity)
     {
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("import com.company.app.domain.entity." + entity.getName() + ";\n");
-        sb.append("import com.company.app.domain.interfaces.repositories.IRepositoryBase;");
-        
-        return sb.toString();
+        return "import com.company.app.domain.entity." + entity.getName() + ";";
     }
     
     private String getInterfaceContent(Entity entity)
     {
         StringBuilder sb = new StringBuilder();
-        String interfaceName = StringService.getFirstCharToUpper(entity.getName());
         
-        sb.append("public interface I" + interfaceName);
+        sb.append("public interface I" + entity + "Repository");
         sb.append("\n\textends IRepositoryBase<" + entity.getName() + ">");
         sb.append("\n{\n\n}");
         
@@ -64,10 +57,9 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
     private String getClassImports(Entity entity)
     {
         StringBuilder sb = new StringBuilder();
-        String className = StringService.getFirstCharToUpper(entity.getName());
         
         sb.append("import com.company.app.domain.entity." + entity.getName() + ";\n");
-        sb.append("import com.company.app.domain.interfaces.repositories.I" + className + "Repository;");
+        sb.append("import com.company.app.domain.interfaces.repositories.I" + entity.getName() + "Repository;");
         
         return sb.toString();
     }
@@ -75,11 +67,10 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
     private String getClassContent(Entity entity)
     {
         StringBuilder sb = new StringBuilder();
-        String className = StringService.getFirstCharToUpper(entity.getName());
         
-        sb.append("public class " + className + "Repository\n");
-        sb.append("\textends RepositoryBase<" + className + ">\n");
-        sb.append("\timplements I" + className + "Repository\n");
+        sb.append("public class " + entity.getName() + "Repository\n");
+        sb.append("\textends RepositoryBase<" + entity.getName() + ">\n");
+        sb.append("\timplements I" + entity.getName() + "Repository\n");
         sb.append("{\n\n}");
         
         return sb.toString();

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import com.perfani.ddg.controller.builder.entity.EntityBuilder;
 import com.perfani.ddg.controller.builder.entity.JavaWithJDOEntityStrategy;
+import com.perfani.ddg.controller.builder.repository.JavaWithJDORepositoryStrategy;
+import com.perfani.ddg.controller.builder.repository.RepositoryBuilder;
+import com.perfani.ddg.controller.builder.service.JavaWithJDOServiceStrategy;
+import com.perfani.ddg.controller.builder.service.ServiceBuilder;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
 
@@ -39,6 +43,19 @@ public class TempTest
         EntityBuilder builder = new EntityBuilder(new JavaWithJDOEntityStrategy());
         String output = builder.execute(e1);
         
+        RepositoryBuilder rbuilder = new RepositoryBuilder(new JavaWithJDORepositoryStrategy());
+        String[] rout = rbuilder.execute(e1);
+        
+        ServiceBuilder sbuilder = new ServiceBuilder(new JavaWithJDOServiceStrategy());
+        String[] sout = sbuilder.execute(e1);
+        
+        System.out.println("==============ENTITY==============");
         System.out.println(output);
+        System.out.println("==============REPOSITORY==============");
+        System.out.println(rout[0]);
+        System.out.println(rout[1]);
+        System.out.println("==============SERVICE==============");
+        System.out.println(sout[0]);
+        System.out.println(sout[1]);
     }
 }

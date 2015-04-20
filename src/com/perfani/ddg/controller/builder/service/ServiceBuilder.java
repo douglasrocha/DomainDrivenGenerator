@@ -11,7 +11,7 @@ public class ServiceBuilder
         _strategy = strategy;
     }
     
-    public String execute(Entity entity)
+    public String[] execute(Entity entity)
     {
         return _strategy.execute(entity);
     }
