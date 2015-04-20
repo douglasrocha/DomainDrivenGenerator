@@ -1,5 +1,6 @@
 package com.perfani.ddg.test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.perfani.ddg.action.builder.appservice.AppServiceBuilder;
@@ -11,6 +12,9 @@ import com.perfani.ddg.action.builder.repository.RepositoryBuilder;
 import com.perfani.ddg.action.builder.service.JavaWithJDOServiceStrategy;
 import com.perfani.ddg.action.builder.service.ServiceBuilder;
 import com.perfani.ddg.controller.FileController;
+import com.perfani.ddg.exceptions.EntityNotFoundException;
+import com.perfani.ddg.exceptions.InvalidKeyAmountException;
+import com.perfani.ddg.exceptions.InvalidMultiplicityException;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
 
@@ -43,6 +47,29 @@ public class TempTest
         e1.setKey(f1);
         e1.setFields(listField);
         
-        FileController.writeCode("D:\\input\\teste.txt", "D:\\output\\teste");
+        try
+        {
+            FileController.writeCode("D:\\input\\teste.txt", "D:\\output\\teste");
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (InvalidKeyAmountException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (EntityNotFoundException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (InvalidMultiplicityException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

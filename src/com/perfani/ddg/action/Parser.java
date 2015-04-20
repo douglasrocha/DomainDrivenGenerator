@@ -13,9 +13,9 @@ import com.perfani.ddg.utils.RegexService;
 
 public class Parser
 {
-    private final static String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:]*(\\s*))*";
+    private final static String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:]*(\\s*),{0,1})*";
     private final static String relationshipPattern = "\\[[A-Za-z0-9_]+\\][1*]\\-[1*]\\[[A-Za-z0-9_]+\\]";
-    private final static String wordPattern = "[A-Za-z0-9_:]+";
+    private final static String wordPattern = "[A-Za-z0-9_]+\\s*\\:\\s*[A-Za-z0-9]+";
     
     /***
      * 
@@ -60,7 +60,7 @@ public class Parser
             entity.setKey(key);
             
             // Adds attributes to entity
-            List<String> listAttrStr = RegexService.getMatches(explodedStr[2], wordPattern);
+            String[] listAttrStr = explodedStr[2].split(",");
             
             for (String attr : listAttrStr)
             {
