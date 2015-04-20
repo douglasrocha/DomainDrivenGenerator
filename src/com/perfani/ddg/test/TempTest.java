@@ -2,6 +2,8 @@ package com.perfani.ddg.test;
 
 import java.util.ArrayList;
 
+import com.perfani.ddg.controller.builder.appservice.AppServiceBuilder;
+import com.perfani.ddg.controller.builder.appservice.JavaWithJDOAppServiceStrategy;
 import com.perfani.ddg.controller.builder.entity.EntityBuilder;
 import com.perfani.ddg.controller.builder.entity.JavaWithJDOEntityStrategy;
 import com.perfani.ddg.controller.builder.repository.JavaWithJDORepositoryStrategy;
@@ -49,6 +51,9 @@ public class TempTest
         ServiceBuilder sbuilder = new ServiceBuilder(new JavaWithJDOServiceStrategy());
         String[] sout = sbuilder.execute(e1);
         
+        AppServiceBuilder abuilder = new AppServiceBuilder(new JavaWithJDOAppServiceStrategy());
+        String[] aout = abuilder.execute(e1);
+        
         System.out.println("==============ENTITY==============");
         System.out.println(output);
         System.out.println("==============REPOSITORY==============");
@@ -57,5 +62,8 @@ public class TempTest
         System.out.println("==============SERVICE==============");
         System.out.println(sout[0]);
         System.out.println(sout[1]);
+        System.out.println("==============APPSERVICE==============");
+        System.out.println(aout[0]);
+        System.out.println(aout[1]);
     }
 }
