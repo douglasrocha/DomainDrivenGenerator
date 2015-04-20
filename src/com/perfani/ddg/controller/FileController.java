@@ -28,7 +28,7 @@ public class FileController
     {
         String fileContent = IOService.readAllLines(inputPath);
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
-        List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
+        //List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         
         if (!DomainDrivenIO.createRootDirectories(outputPath))
         {

@@ -3,14 +3,6 @@ package com.perfani.ddg.test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.perfani.ddg.action.builder.appservice.AppServiceBuilder;
-import com.perfani.ddg.action.builder.appservice.JavaWithJDOAppServiceStrategy;
-import com.perfani.ddg.action.builder.entity.EntityBuilder;
-import com.perfani.ddg.action.builder.entity.JavaWithJDOEntityStrategy;
-import com.perfani.ddg.action.builder.repository.JavaWithJDORepositoryStrategy;
-import com.perfani.ddg.action.builder.repository.RepositoryBuilder;
-import com.perfani.ddg.action.builder.service.JavaWithJDOServiceStrategy;
-import com.perfani.ddg.action.builder.service.ServiceBuilder;
 import com.perfani.ddg.controller.FileController;
 import com.perfani.ddg.exceptions.EntityNotFoundException;
 import com.perfani.ddg.exceptions.InvalidKeyAmountException;

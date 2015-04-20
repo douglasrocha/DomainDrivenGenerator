@@ -10,20 +10,21 @@ public class DomainDrivenIO
 {
     private final static String[] _paths = 
     {
-        "com",
-        "com/company",
-        "com/company/app",
-        "com/company/app/application",
-        "com/company/app/application/interfaces",
-        "com/company/app/domain",
-        "com/company/app/domain/entity",
-        "com/company/app/domain/interfaces",
-        "com/company/app/domain/interfaces/repositories",
-        "com/company/app/domain/interfaces/services",
-        "com/company/app/domain/services",
-        "com/company/app/infra",
-        "com/company/app/data",
-        "com/company/app/data/repositories",
+        "src",
+        "src/com",
+        "src/com/company",
+        "src/com/company/app",
+        "src/com/company/app/application",
+        "src/com/company/app/application/interfaces",
+        "src/com/company/app/domain",
+        "src/com/company/app/domain/entity",
+        "src/com/company/app/domain/interfaces",
+        "src/com/company/app/domain/interfaces/repositories",
+        "src/com/company/app/domain/interfaces/services",
+        "src/com/company/app/domain/services",
+        "src/com/company/app/infra",
+        "src/com/company/app/infra/data",
+        "src/com/company/app/infra/data/repositories",
     };
     
     public static boolean createRootDirectories(String path)
@@ -62,7 +63,7 @@ public class DomainDrivenIO
     public static void saveEntityFile(Entity entity, String path, String content) 
            throws IOException 
     {
-        String prefix = "com/company/app/domain/entity/";
+        String prefix = "src/com/company/app/domain/entity/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
         
         String parsedPath = addsSlashIfNecessary(path);
@@ -73,7 +74,7 @@ public class DomainDrivenIO
     public static void saveInterfaceRepositoryFile(Entity entity, String path, String content) 
             throws IOException 
      {
-        String prefix = "com/company/app/domain/interfaces/repositories/I";
+        String prefix = "src/com/company/app/domain/interfaces/repositories/I";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
         
         String parsedPath = addsSlashIfNecessary(path);
@@ -84,7 +85,7 @@ public class DomainDrivenIO
      public static void saveRepositoryFile(Entity entity, String path, String content) 
             throws IOException 
      {
-        String prefix = "com/company/app/infra/data/repositories/";
+        String prefix = "src/com/company/app/infra/data/repositories/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
          
         String parsedPath = addsSlashIfNecessary(path);
@@ -95,7 +96,7 @@ public class DomainDrivenIO
      public static void saveInterfaceServiceFile(Entity entity, String path, String content) 
              throws IOException 
       {
-         String prefix = "com/company/app/domain/interfaces/repositories/I";
+         String prefix = "src/com/company/app/domain/interfaces/services/I";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
          
          String parsedPath = addsSlashIfNecessary(path);
@@ -106,7 +107,7 @@ public class DomainDrivenIO
       public static void saveServiceFile(Entity entity, String path, String content) 
              throws IOException 
       {
-         String prefix = "com/company/app/infra/data/repositories/";
+         String prefix = "src/com/company/app/domain/services/";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
          
          String parsedPath = addsSlashIfNecessary(path);
@@ -117,7 +118,7 @@ public class DomainDrivenIO
       public static void saveInterfaceAppServiceFile(Entity entity, String path, String content) 
               throws IOException 
        {
-          String prefix = "com/company/app/domain/interfaces/repositories/I";
+          String prefix = "src/com/company/app/application/interfaces/I";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
           
           String parsedPath = addsSlashIfNecessary(path);
@@ -128,7 +129,7 @@ public class DomainDrivenIO
        public static void saveAppServiceFile(Entity entity, String path, String content) 
               throws IOException 
        {
-          String prefix = "com/company/app/infra/data/repositories/";
+          String prefix = "src/com/company/app/application/";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
           
           String parsedPath = addsSlashIfNecessary(path);
