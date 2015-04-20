@@ -1,4 +1,4 @@
-package com.perfani.ddg.controller;
+package com.perfani.ddg.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import com.perfani.ddg.utils.RegexService;
 
 public class Parser
 {
-    private final String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:]*(\\s*))*";
-    private final String relationshipPattern = "\\[[A-Za-z0-9_]+\\][1*]\\-[1*]\\[[A-Za-z0-9_]+\\]";
-    private final String wordPattern = "[A-Za-z0-9_:]+";
+    private final static String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:]*(\\s*))*";
+    private final static String relationshipPattern = "\\[[A-Za-z0-9_]+\\][1*]\\-[1*]\\[[A-Za-z0-9_]+\\]";
+    private final static String wordPattern = "[A-Za-z0-9_:]+";
     
     /***
      * 
@@ -23,7 +23,7 @@ public class Parser
      * @return
      * @throws InvalidKeyAmountException 
      */
-    public List<Entity> GetAllEntities(String fileContent) throws InvalidKeyAmountException
+    public static List<Entity> GetAllEntities(String fileContent) throws InvalidKeyAmountException
     {
         // Creates empty output list
         List<Entity> listEntity = new ArrayList<Entity>();
@@ -88,7 +88,7 @@ public class Parser
      * @return
      * @throws InvalidMultiplicityException 
      */
-    public List<Relationship> GetAllRelationships(List<Entity> listEntities, String fileContent) 
+    public static List<Relationship> GetAllRelationships(List<Entity> listEntities, String fileContent) 
             throws EntityNotFoundException, InvalidMultiplicityException
     {
         List<Relationship> listRelationship = new ArrayList<Relationship>();

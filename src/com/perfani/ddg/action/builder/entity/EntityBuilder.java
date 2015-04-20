@@ -1,4 +1,4 @@
-package com.perfani.ddg.controller.builder.entity;
+package com.perfani.ddg.action.builder.entity;
 
 import com.perfani.ddg.model.Entity;
 

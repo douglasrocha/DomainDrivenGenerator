@@ -1,12 +1,12 @@
-package com.perfani.ddg.controller.builder.service;
+package com.perfani.ddg.action.builder.appservice;
 
 import com.perfani.ddg.model.Entity;
 
-public class ServiceBuilder
+public class AppServiceBuilder
 {
-    private IServiceBuilder _strategy;
+    private IAppServiceBuilder _strategy;
     
-    public ServiceBuilder(IServiceBuilder strategy)
+    public AppServiceBuilder(IAppServiceBuilder strategy)
     {
         _strategy = strategy;
     }

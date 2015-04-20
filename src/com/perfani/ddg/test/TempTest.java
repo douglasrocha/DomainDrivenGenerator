@@ -2,14 +2,15 @@ package com.perfani.ddg.test;
 
 import java.util.ArrayList;
 
-import com.perfani.ddg.controller.builder.appservice.AppServiceBuilder;
-import com.perfani.ddg.controller.builder.appservice.JavaWithJDOAppServiceStrategy;
-import com.perfani.ddg.controller.builder.entity.EntityBuilder;
-import com.perfani.ddg.controller.builder.entity.JavaWithJDOEntityStrategy;
-import com.perfani.ddg.controller.builder.repository.JavaWithJDORepositoryStrategy;
-import com.perfani.ddg.controller.builder.repository.RepositoryBuilder;
-import com.perfani.ddg.controller.builder.service.JavaWithJDOServiceStrategy;
-import com.perfani.ddg.controller.builder.service.ServiceBuilder;
+import com.perfani.ddg.action.builder.appservice.AppServiceBuilder;
+import com.perfani.ddg.action.builder.appservice.JavaWithJDOAppServiceStrategy;
+import com.perfani.ddg.action.builder.entity.EntityBuilder;
+import com.perfani.ddg.action.builder.entity.JavaWithJDOEntityStrategy;
+import com.perfani.ddg.action.builder.repository.JavaWithJDORepositoryStrategy;
+import com.perfani.ddg.action.builder.repository.RepositoryBuilder;
+import com.perfani.ddg.action.builder.service.JavaWithJDOServiceStrategy;
+import com.perfani.ddg.action.builder.service.ServiceBuilder;
+import com.perfani.ddg.controller.FileController;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
 
@@ -42,31 +43,6 @@ public class TempTest
         e1.setKey(f1);
         e1.setFields(listField);
         
-        EntityBuilder builder = new EntityBuilder(new JavaWithJDOEntityStrategy());
-        String output = builder.execute(e1);
-        
-        RepositoryBuilder rbuilder = new RepositoryBuilder(new JavaWithJDORepositoryStrategy());
-        String[] rout = rbuilder.execute(e1);
-        
-        ServiceBuilder sbuilder = new ServiceBuilder(new JavaWithJDOServiceStrategy());
-        String[] sout = sbuilder.execute(e1);
-        
-        AppServiceBuilder abuilder = new AppServiceBuilder(new JavaWithJDOAppServiceStrategy());
-        String[] aout = abuilder.execute(e1);
-        
-        System.out.println("==============ENTITY==============");
-        System.out.println(output);
-        System.out.println("==============I_REPOSITORY==============");
-        System.out.println(rout[0]);
-        System.out.println("==============REPOSITORY==============");
-        System.out.println(rout[1]);
-        System.out.println("==============I_SERVICE==============");
-        System.out.println(sout[0]);
-        System.out.println("==============SERVICE==============");
-        System.out.println(sout[1]);
-        System.out.println("==============I_APPSERVICE==============");
-        System.out.println(aout[0]);
-        System.out.println("==============APPSERVICE==============");
-        System.out.println(aout[1]);
+        FileController.writeCode("D:\\input\\teste.txt", "D:\\output\\teste");
     }
 }
