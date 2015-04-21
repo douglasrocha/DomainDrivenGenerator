@@ -51,10 +51,7 @@ public class DomainDrivenIO
         
         for (String item : _paths)
         {
-        	String parsed_item = item;
-        	
-        	parsed_item = parsed_item.replace("company", application.getCompanyName());
-        	parsed_item = parsed_item.replace("myapp", application.getApplicationName());
+        	String parsed_item = replaceGenericCompanyAndAppName(application, item);
         	
             success = IOService.createFolder
             (
@@ -68,6 +65,12 @@ public class DomainDrivenIO
         }
         
         return success;
+    }
+    
+    private static String replaceGenericCompanyAndAppName(Application application, String path)
+    {
+    	return path.replace("company", application.getCompanyName())
+    			   .replace("myapp", application.getApplicationName());
     }
     
     private static String addsSlashIfNecessary(String path)
@@ -87,8 +90,7 @@ public class DomainDrivenIO
     {
         String prefix = "src/com/company/myapp/domain/entity/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-        prefix = prefix.replace("company", application.getCompanyName());
-        prefix = prefix.replace("myapp", application.getApplicationName());
+        prefix = replaceGenericCompanyAndAppName(application, prefix);
         
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + ".java";
@@ -100,8 +102,7 @@ public class DomainDrivenIO
      {
         String prefix = "src/com/company/myapp/domain/interfaces/repositories/I";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-        prefix = prefix.replace("company", application.getCompanyName());
-        prefix = prefix.replace("myapp", application.getApplicationName());
+        prefix = replaceGenericCompanyAndAppName(application, prefix);
         
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + "Repository.java";
@@ -113,8 +114,7 @@ public class DomainDrivenIO
      {
         String prefix = "src/com/company/myapp/infra/data/repositories/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-        prefix = prefix.replace("company", application.getCompanyName());
-        prefix = prefix.replace("myapp", application.getApplicationName());
+        prefix = replaceGenericCompanyAndAppName(application, prefix);
          
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + "Repository.java";
@@ -126,8 +126,7 @@ public class DomainDrivenIO
       {
          String prefix = "src/com/company/myapp/domain/interfaces/services/I";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-         prefix = prefix.replace("company", application.getCompanyName());
-         prefix = prefix.replace("myapp", application.getApplicationName());
+         prefix = replaceGenericCompanyAndAppName(application, prefix);
          
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
@@ -139,8 +138,7 @@ public class DomainDrivenIO
       {
          String prefix = "src/com/company/myapp/domain/services/";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-         prefix = prefix.replace("company", application.getCompanyName());
-         prefix = prefix.replace("myapp", application.getApplicationName());
+         prefix = replaceGenericCompanyAndAppName(application, prefix);
          
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
@@ -152,8 +150,7 @@ public class DomainDrivenIO
        {
           String prefix = "src/com/company/myapp/application/interfaces/I";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-          prefix = prefix.replace("company", application.getCompanyName());
-          prefix = prefix.replace("myapp", application.getApplicationName());
+          prefix = replaceGenericCompanyAndAppName(application, prefix);
           
           String parsedPath = addsSlashIfNecessary(path);
           parsedPath += prefix + entity.getName() + "AppService.java";
@@ -165,8 +162,7 @@ public class DomainDrivenIO
        {
           String prefix = "src/com/company/myapp/application/";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
-          prefix = prefix.replace("company", application.getCompanyName());
-          prefix = prefix.replace("myapp", application.getApplicationName());
+          prefix = replaceGenericCompanyAndAppName(application, prefix);
           
           String parsedPath = addsSlashIfNecessary(path);
           parsedPath += prefix + entity.getName() + "AppService.java";
