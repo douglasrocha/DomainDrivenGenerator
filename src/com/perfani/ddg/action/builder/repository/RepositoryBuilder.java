@@ -17,14 +17,23 @@
 package com.perfani.ddg.action.builder.repository;
 
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.values.TechnologyType;
 
 public class RepositoryBuilder
 {
     private IRepositoryBuilder _strategy;
     
-    public RepositoryBuilder(IRepositoryBuilder strategy)
-    {
-        _strategy = strategy;
+    public RepositoryBuilder(TechnologyType type)
+    { 	
+    	switch (type)
+    	{
+    		case JavaWithJdo:
+    			_strategy = new JavaWithJDORepositoryStrategy();
+    			break;
+    			
+    		case CSharpWithAWS:
+    			break;
+    	}
     }
     
     public String[] execute(Entity entity)

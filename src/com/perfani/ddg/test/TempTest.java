@@ -23,8 +23,10 @@ import com.perfani.ddg.controller.FileController;
 import com.perfani.ddg.exceptions.EntityNotFoundException;
 import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
+import com.perfani.ddg.values.TechnologyType;
 
 public class TempTest
 {
@@ -55,9 +57,15 @@ public class TempTest
         e1.setKey(f1);
         e1.setFields(listField);
         
+        Application app = new Application();
+        app.setCompanyName("this_is");
+        app.setApplicationName("super");
+        app.setType(TechnologyType.JavaWithJdo);
+        
+        
         try
         {
-            FileController.writeCode("D:\\input\\teste.txt", "D:\\output\\teste");
+            FileController.writeCode(app ,"/home/douglas/input.txt", "/home/douglas/output");
         }
         catch (IOException e)
         {

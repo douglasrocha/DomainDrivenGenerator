@@ -17,14 +17,23 @@
 package com.perfani.ddg.action.builder.service;
 
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.values.TechnologyType;
 
 public class ServiceBuilder
 {
     private IServiceBuilder _strategy;
     
-    public ServiceBuilder(IServiceBuilder strategy)
-    {
-        _strategy = strategy;
+    public ServiceBuilder(TechnologyType type)
+    {    	
+    	switch (type)
+    	{
+    		case JavaWithJdo:
+    			_strategy = new JavaWithJDOServiceStrategy();
+    			break;
+    			
+    		case CSharpWithAWS:
+    			break;
+    	}
     }
     
     public String[] execute(Entity entity)

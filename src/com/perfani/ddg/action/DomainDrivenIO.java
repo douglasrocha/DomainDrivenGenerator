@@ -18,6 +18,7 @@ package com.perfani.ddg.action;
 
 import java.io.IOException;
 
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.utils.IOService;
 import com.perfani.ddg.utils.OSService;
@@ -29,30 +30,35 @@ public class DomainDrivenIO
         "src",
         "src/com",
         "src/com/company",
-        "src/com/company/app",
-        "src/com/company/app/application",
-        "src/com/company/app/application/interfaces",
-        "src/com/company/app/domain",
-        "src/com/company/app/domain/entity",
-        "src/com/company/app/domain/interfaces",
-        "src/com/company/app/domain/interfaces/repositories",
-        "src/com/company/app/domain/interfaces/services",
-        "src/com/company/app/domain/services",
-        "src/com/company/app/infra",
-        "src/com/company/app/infra/data",
-        "src/com/company/app/infra/data/repositories",
+        "src/com/company/myapp",
+        "src/com/company/myapp/application",
+        "src/com/company/myapp/application/interfaces",
+        "src/com/company/myapp/domain",
+        "src/com/company/myapp/domain/entity",
+        "src/com/company/myapp/domain/interfaces",
+        "src/com/company/myapp/domain/interfaces/repositories",
+        "src/com/company/myapp/domain/interfaces/services",
+        "src/com/company/myapp/domain/services",
+        "src/com/company/myapp/infra",
+        "src/com/company/myapp/infra/data",
+        "src/com/company/myapp/infra/data/repositories",
     };
     
-    public static boolean createRootDirectories(String path)
+    public static boolean createRootDirectories(Application application, String path)
     {
         boolean success = true;
         String parsedPath = addsSlashIfNecessary(path);        
         
         for (String item : _paths)
         {
+        	String parsed_item = item;
+        	
+        	parsed_item = parsed_item.replace("company", application.getCompanyName());
+        	parsed_item = parsed_item.replace("myapp", application.getApplicationName());
+        	
             success = IOService.createFolder
             (
-                parsedPath + (OSService.isWindows() ? item.replace("/", "\\") : item)
+                parsedPath + (OSService.isWindows() ? parsed_item.replace("/", "\\") : parsed_item)
             );
             
             if (!success)
@@ -76,77 +82,91 @@ public class DomainDrivenIO
         return parsedPath;
     }
     
-    public static void saveEntityFile(Entity entity, String path, String content) 
-           throws IOException 
+    public static void saveEntityFile(Application application, Entity entity, 
+    								  String path, String content) throws IOException 
     {
-        String prefix = "src/com/company/app/domain/entity/";
+        String prefix = "src/com/company/myapp/domain/entity/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = prefix.replace("company", application.getCompanyName());
+        prefix = prefix.replace("myapp", application.getApplicationName());
         
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + ".java";
         IOService.writeFile(parsedPath, content);
     }
     
-    public static void saveInterfaceRepositoryFile(Entity entity, String path, String content) 
-            throws IOException 
+    public static void saveInterfaceRepositoryFile(Application application, Entity entity, 
+    											   String path, String content) throws IOException 
      {
-        String prefix = "src/com/company/app/domain/interfaces/repositories/I";
+        String prefix = "src/com/company/myapp/domain/interfaces/repositories/I";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = prefix.replace("company", application.getCompanyName());
+        prefix = prefix.replace("myapp", application.getApplicationName());
         
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + "Repository.java";
         IOService.writeFile(parsedPath, content);
      }
     
-     public static void saveRepositoryFile(Entity entity, String path, String content) 
-            throws IOException 
+     public static void saveRepositoryFile(Application application, Entity entity, 
+    		 							   String path, String content) throws IOException 
      {
-        String prefix = "src/com/company/app/infra/data/repositories/";
+        String prefix = "src/com/company/myapp/infra/data/repositories/";
         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = prefix.replace("company", application.getCompanyName());
+        prefix = prefix.replace("myapp", application.getApplicationName());
          
         String parsedPath = addsSlashIfNecessary(path);
         parsedPath += prefix + entity.getName() + "Repository.java";
         IOService.writeFile(parsedPath, content);
      }
      
-     public static void saveInterfaceServiceFile(Entity entity, String path, String content) 
-             throws IOException 
+     public static void saveInterfaceServiceFile(Application application, Entity entity, 
+    		 									 String path, String content) throws IOException 
       {
-         String prefix = "src/com/company/app/domain/interfaces/services/I";
+         String prefix = "src/com/company/myapp/domain/interfaces/services/I";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+         prefix = prefix.replace("company", application.getCompanyName());
+         prefix = prefix.replace("myapp", application.getApplicationName());
          
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
          IOService.writeFile(parsedPath, content);
       }
      
-      public static void saveServiceFile(Entity entity, String path, String content) 
-             throws IOException 
+      public static void saveServiceFile(Application application, Entity entity, 
+    		  							 String path, String content) throws IOException 
       {
-         String prefix = "src/com/company/app/domain/services/";
+         String prefix = "src/com/company/myapp/domain/services/";
          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+         prefix = prefix.replace("company", application.getCompanyName());
+         prefix = prefix.replace("myapp", application.getApplicationName());
          
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
          IOService.writeFile(parsedPath, content);
       }
       
-      public static void saveInterfaceAppServiceFile(Entity entity, String path, String content) 
-              throws IOException 
+      public static void saveInterfaceAppServiceFile(Application application, Entity entity, 
+    		  										 String path, String content) throws IOException 
        {
-          String prefix = "src/com/company/app/application/interfaces/I";
+          String prefix = "src/com/company/myapp/application/interfaces/I";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+          prefix = prefix.replace("company", application.getCompanyName());
+          prefix = prefix.replace("myapp", application.getApplicationName());
           
           String parsedPath = addsSlashIfNecessary(path);
           parsedPath += prefix + entity.getName() + "AppService.java";
           IOService.writeFile(parsedPath, content);
        }
       
-       public static void saveAppServiceFile(Entity entity, String path, String content) 
-              throws IOException 
+       public static void saveAppServiceFile(Application application, Entity entity, 
+    		   								 String path, String content) throws IOException 
        {
-          String prefix = "src/com/company/app/application/";
+          String prefix = "src/com/company/myapp/application/";
           prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+          prefix = prefix.replace("company", application.getCompanyName());
+          prefix = prefix.replace("myapp", application.getApplicationName());
           
           String parsedPath = addsSlashIfNecessary(path);
           parsedPath += prefix + entity.getName() + "AppService.java";

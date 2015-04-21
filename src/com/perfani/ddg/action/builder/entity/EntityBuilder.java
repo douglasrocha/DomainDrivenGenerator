@@ -17,14 +17,23 @@
 package com.perfani.ddg.action.builder.entity;
 
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.values.TechnologyType;
 
 public class EntityBuilder
 {
     private IEntityBuilder _strategy;
     
-    public EntityBuilder(IEntityBuilder strategy)
-    {
-        _strategy = strategy;
+    public EntityBuilder(TechnologyType type)
+    {    	
+    	switch (type)
+    	{
+    		case JavaWithJdo:
+    			_strategy = new JavaWithJDOEntityStrategy();
+    			break;
+    			
+    		case CSharpWithAWS:
+    			break;
+    	}
     }
     
     public String execute(Entity entity)
