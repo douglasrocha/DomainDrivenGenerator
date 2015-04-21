@@ -31,7 +31,7 @@ public class JavaWithJDOEntityStrategy implements IEntityBuilder
     {
         StringBuilder entityClass = new StringBuilder();
         
-        entityClass.append(getPackage());
+        entityClass.append(getPackage(application));
         entityClass.append("\n\n");
         entityClass.append(getImportLines());
         entityClass.append("\n\n");
@@ -44,9 +44,11 @@ public class JavaWithJDOEntityStrategy implements IEntityBuilder
         return entityClass.toString();
     }
     
-    private String getPackage()
+    private String getPackage(Application app)
     {
-        return "package com.company.app.domain.entity";       
+        return String.format("package com.%s.%s.domain.entity", 
+        					 app.getCompanyName(), 
+        					 app.getApplicationName());       
     }
     
     private String getImportLines()
@@ -56,7 +58,7 @@ public class JavaWithJDOEntityStrategy implements IEntityBuilder
         output.append("import javax.jdo.annotations.IdGeneratorStrategy;\n");
         output.append("import javax.jdo.annotations.PersistenceCapable;\n");
         output.append("import javax.jdo.annotations.Persistent;\n");
-        output.append("import javax.jdo.annotations.PrimaryKey;\n"); 
+        output.append("import javax.jdo.annotations.PrimaryKey;"); 
         
         return output.toString();
     }
