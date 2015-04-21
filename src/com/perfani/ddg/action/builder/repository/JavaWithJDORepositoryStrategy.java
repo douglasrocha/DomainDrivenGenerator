@@ -31,16 +31,16 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
         StringBuilder repositoryInterface = new StringBuilder();
         StringBuilder repositoryClass = new StringBuilder();
         
-        repositoryInterface.append(getInterfacePackage());
+        repositoryInterface.append(getInterfacePackage(application));
         repositoryInterface.append("\n\n");
-        repositoryInterface.append(getInterfaceImports(entity));
+        repositoryInterface.append(getInterfaceImports(application, entity));
         repositoryInterface.append("\n\n");
         repositoryInterface.append(getInterfaceContent(entity));
         outputArray[0] = repositoryInterface.toString();
         
-        repositoryClass.append(getClassPackage());        
+        repositoryClass.append(getClassPackage(application));        
         repositoryClass.append("\n\n");
-        repositoryClass.append(getClassImports(entity));
+        repositoryClass.append(getClassImports(application, entity));
         repositoryClass.append("\n\n");
         repositoryClass.append(getClassContent(entity));
         outputArray[1] = repositoryClass.toString();
@@ -48,38 +48,52 @@ public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
         return outputArray;
     }
     
-    private String getInterfacePackage()
+    private String getInterfacePackage(Application app)
     {
-        return "package com.company.app.domain.interfaces.repositories;";
+        return String.format("package com.%s.%s.domain.interfaces.repositories;", 
+			                 app.getCompanyName(), 
+			                 app.getApplicationName());
     }
     
-    private String getInterfaceImports(Entity entity)
+    private String getInterfaceImports(Application app, Entity entity)
     {
-        return "import com.company.app.domain.entity." + entity.getName() + ";";
+        return String.format("import com.%s.%s.domain.entity.%s;", 
+			                 app.getCompanyName(), 
+			                 app.getApplicationName(), 
+			                 entity.getName());
     }
     
     private String getInterfaceContent(Entity entity)
     {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("public interface I" + entity.getName() + "Repository");
-        sb.append("\n\textends IRepositoryBase<" + entity.getName() + ">");
+        sb.append(String.format("public interface I%sRepository", entity.getName()));
+        sb.append(String.format("\n\textends IRepositoryBase<%s>", entity.getName()));
         sb.append("\n{\n\n}");
         
         return sb.toString();
     }
     
-    private String getClassPackage()
+    private String getClassPackage(Application app)
     {
-        return "package com.company.app.infra.data.repositories;";
+        return String.format("package com.%s.%s.infra.data.repositories;", 
+			                 app.getCompanyName(), 
+			                 app.getApplicationName());
     }
     
-    private String getClassImports(Entity entity)
+    private String getClassImports(Application app, Entity entity)
     {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("import com.company.app.domain.entity." + entity.getName() + ";\n");
-        sb.append("import com.company.app.domain.interfaces.repositories.I" + entity.getName() + "Repository;");
+        sb.append(String.format("import com.%s.%s.domain.entity.%s;\n", 
+				                app.getCompanyName(), 
+				                app.getApplicationName(), 
+				                entity.getName()));
+        
+        sb.append(String.format("import com.%s.%s.domain.interfaces.repositories.I%sRepository;", 
+				                app.getCompanyName(), 
+				                app.getApplicationName(), 
+				                entity.getName()));
         
         return sb.toString();
     }
