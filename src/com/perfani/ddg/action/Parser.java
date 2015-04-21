@@ -29,9 +29,9 @@ import com.perfani.ddg.utils.RegexService;
 
 public class Parser
 {
-    private final static String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:]*(\\s*),{0,1})*";
+    private final static String entityPattern = "(\\s*)[A-Za-z0-9_]+(\\s*)\\|((\\s*)[A-Za-z0-9_:]+(\\s*))+\\|((\\s*)[A-Za-z0-9_:<>]*(\\s*),{0,1})*";
     private final static String relationshipPattern = "\\[[A-Za-z0-9_]+\\][1*]\\-[1*]\\[[A-Za-z0-9_]+\\]";
-    private final static String wordPattern = "[A-Za-z0-9_]+\\s*\\:\\s*[A-Za-z0-9]+";
+    private final static String wordPattern = "[A-Za-z0-9_]+\\s*\\:\\s*[A-Za-z0-9<>]+";
     
     /***
      * 

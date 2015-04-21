@@ -58,14 +58,14 @@ public class TempTest
         e1.setFields(listField);
         
         Application app = new Application();
-        app.setCompanyName("this_is");
-        app.setApplicationName("super");
+        app.setCompanyName("my");
+        app.setApplicationName("wow");
         app.setType(TechnologyType.JavaWithJdo);
         
         
         try
         {
-            FileController.writeCode(app ,"/home/douglas/input.txt", "/home/douglas/output");
+            FileController.writeCode(app, "/home/douglas/input.txt", "/home/douglas/output");
         }
         catch (IOException e)
         {
