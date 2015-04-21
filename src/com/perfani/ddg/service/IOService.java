@@ -22,15 +22,13 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.perfani.ddg.domain.model.Application;
-
 public class IOService
 {
-    public static String readAllLines(Application application) throws IOException
+    public static String readAllLines(String filePath) throws IOException
     {
         StringBuilder strBuilder = new StringBuilder();
         
-        for (String line : Files.readAllLines(Paths.get(application.getDataModelPath())))
+        for (String line : Files.readAllLines(Paths.get(filePath)))
         {
             strBuilder.append(line);
         }

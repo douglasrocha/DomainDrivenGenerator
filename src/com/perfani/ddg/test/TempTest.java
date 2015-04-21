@@ -60,6 +60,7 @@ public class TempTest
         Application app = new Application();
         app.setCompanyName("my");
         app.setApplicationName("wow");
+        app.setDataModelPath("/home/douglas/input.txt");
         app.setSetupPath("/home/douglas/output");
         app.setType(TechnologyType.JavaWithJdo);
         

@@ -19,6 +19,7 @@ package com.perfani.ddg.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.perfani.ddg.action.BaseWriter;
 import com.perfani.ddg.action.DomainDrivenIO;
 import com.perfani.ddg.action.Parser;
 import com.perfani.ddg.action.builder.appservice.AppServiceBuilder;
@@ -39,7 +40,7 @@ public class FileController
            throws IOException, InvalidKeyAmountException, 
                   EntityNotFoundException, InvalidMultiplicityException
     {
-        String fileContent = IOService.readAllLines(application);
+        String fileContent = IOService.readAllLines(application.getDataModelPath());
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
         List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         
@@ -49,7 +50,7 @@ public class FileController
         }
         
         // Create base files
-        
+        //BaseWriter.writeBaseFiles(application);
         
         // Write entity specific files (domain entity, repository, service, appservice)
         for (Entity entity : listEntities)
