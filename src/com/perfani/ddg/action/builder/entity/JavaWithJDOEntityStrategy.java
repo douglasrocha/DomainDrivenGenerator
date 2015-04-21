@@ -18,11 +18,11 @@ package com.perfani.ddg.action.builder.entity;
 
 import java.util.List;
 
-import com.perfani.ddg.model.Application;
-import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.model.Field;
-import com.perfani.ddg.model.Relationship;
-import com.perfani.ddg.utils.StringService;
+import com.perfani.ddg.domain.model.Application;
+import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.domain.model.Field;
+import com.perfani.ddg.domain.model.Relationship;
+import com.perfani.ddg.service.StringService;
 
 public class JavaWithJDOEntityStrategy implements IEntityBuilder
 {

@@ -20,12 +20,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.perfani.ddg.controller.FileController;
+import com.perfani.ddg.domain.model.Application;
+import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.domain.model.Field;
 import com.perfani.ddg.exceptions.EntityNotFoundException;
 import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
-import com.perfani.ddg.model.Application;
-import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.model.Field;
 import com.perfani.ddg.values.TechnologyType;
 
 public class TempTest

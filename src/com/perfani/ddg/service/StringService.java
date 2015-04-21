@@ -14,26 +14,14 @@
  *  limitations under the License.
  */
 
-package com.perfani.ddg.utils;
+package com.perfani.ddg.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class RegexService
+public class StringService
 {
-    public static List<String> getMatches(String input, String regexPattern)
+    public static String getFirstCharToUpper(String input)
     {
-        ArrayList<String> outputs = new ArrayList<String>();
-        Pattern pattern = Pattern.compile(regexPattern);
-        Matcher matcher = pattern.matcher(input);
-        
-        while (matcher.find())
-        {
-            outputs.add(matcher.group());
-        }
-        
-        return outputs;
+        char first = Character.toUpperCase(input.charAt(0));
+        return first + input.substring(1);
     }
+
 }

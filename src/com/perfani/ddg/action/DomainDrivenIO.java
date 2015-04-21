@@ -18,10 +18,10 @@ package com.perfani.ddg.action;
 
 import java.io.IOException;
 
-import com.perfani.ddg.model.Application;
-import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.utils.IOService;
-import com.perfani.ddg.utils.OSService;
+import com.perfani.ddg.domain.model.Application;
+import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.service.IOService;
+import com.perfani.ddg.service.OSService;
 
 public class DomainDrivenIO
 {

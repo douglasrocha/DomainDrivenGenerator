@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.perfani.ddg.model;
+package com.perfani.ddg.domain.model;
 
 import java.util.ArrayList;
 

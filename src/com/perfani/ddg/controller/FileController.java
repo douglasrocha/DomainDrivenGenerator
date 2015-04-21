@@ -25,13 +25,13 @@ import com.perfani.ddg.action.builder.appservice.AppServiceBuilder;
 import com.perfani.ddg.action.builder.entity.EntityBuilder;
 import com.perfani.ddg.action.builder.repository.RepositoryBuilder;
 import com.perfani.ddg.action.builder.service.ServiceBuilder;
+import com.perfani.ddg.domain.model.Application;
+import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.domain.model.Relationship;
 import com.perfani.ddg.exceptions.EntityNotFoundException;
 import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
-import com.perfani.ddg.model.Application;
-import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.model.Relationship;
-import com.perfani.ddg.utils.IOService;
+import com.perfani.ddg.service.IOService;
 
 public class FileController
 {

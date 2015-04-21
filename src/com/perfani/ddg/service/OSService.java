@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.perfani.ddg.utils;
+package com.perfani.ddg.service;
 
 public class OSService
 {

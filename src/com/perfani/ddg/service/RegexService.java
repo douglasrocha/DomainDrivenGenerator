@@ -14,44 +14,26 @@
  *  limitations under the License.
  */
 
-package com.perfani.ddg.model;
+package com.perfani.ddg.service;
 
-public class Field
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegexService
 {
-    private String type;
-    
-    private String name;
-
-    /**
-     * @return the type
-     */
-    public String getType()
+    public static List<String> getMatches(String input, String regexPattern)
     {
-        return type;
+        ArrayList<String> outputs = new ArrayList<String>();
+        Pattern pattern = Pattern.compile(regexPattern);
+        Matcher matcher = pattern.matcher(input);
+        
+        while (matcher.find())
+        {
+            outputs.add(matcher.group());
+        }
+        
+        return outputs;
     }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type)
-    {
-        this.type = type;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
 }

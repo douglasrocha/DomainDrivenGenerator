@@ -19,13 +19,13 @@ package com.perfani.ddg.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.domain.model.Field;
+import com.perfani.ddg.domain.model.Relationship;
 import com.perfani.ddg.exceptions.EntityNotFoundException;
 import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
-import com.perfani.ddg.model.Entity;
-import com.perfani.ddg.model.Field;
-import com.perfani.ddg.model.Relationship;
-import com.perfani.ddg.utils.RegexService;
+import com.perfani.ddg.service.RegexService;
 
 public class Parser
 {
