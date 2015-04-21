@@ -48,12 +48,16 @@ public class FileController
             throw new IOException("Unable to write root directories!");
         }
         
+        // Create base files
+        
+        
+        // Write entity specific files (domain entity, repository, service, appservice)
         for (Entity entity : listEntities)
         {
-            EntityBuilder entityBuilder = new EntityBuilder(application.getType());
-            RepositoryBuilder repositoryBuilder = new RepositoryBuilder(application.getType());
-            ServiceBuilder serviceBuilder = new ServiceBuilder(application.getType());
-            AppServiceBuilder appServiceBuilder = new AppServiceBuilder(application.getType());
+            EntityBuilder entityBuilder = new EntityBuilder(application);
+            RepositoryBuilder repositoryBuilder = new RepositoryBuilder(application);
+            ServiceBuilder serviceBuilder = new ServiceBuilder(application);
+            AppServiceBuilder appServiceBuilder = new AppServiceBuilder(application);
             
             String strEntity = entityBuilder.execute(application, entity, listRelationship);
             String[] strRepository = repositoryBuilder.execute(application, entity, listRelationship);

@@ -21,15 +21,14 @@ import java.util.List;
 import com.perfani.ddg.domain.model.Application;
 import com.perfani.ddg.domain.model.Entity;
 import com.perfani.ddg.domain.model.Relationship;
-import com.perfani.ddg.domain.values.TechnologyType;
 
 public class EntityBuilder
 {
     private IEntityBuilder _strategy;
     
-    public EntityBuilder(TechnologyType type)
+    public EntityBuilder(Application application)
     {    	
-    	switch (type)
+    	switch (application.getType())
     	{
     		case JavaWithJdo:
     			_strategy = new JavaWithJDOEntityStrategy();

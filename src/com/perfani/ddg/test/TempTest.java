@@ -62,7 +62,6 @@ public class TempTest
         app.setApplicationName("wow");
         app.setType(TechnologyType.JavaWithJdo);
         
-        
         try
         {
             FileController.writeCode(app, "/home/douglas/input.txt", "/home/douglas/output");
