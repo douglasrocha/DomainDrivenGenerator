@@ -35,11 +35,11 @@ import com.perfani.ddg.service.IOService;
 
 public class FileController
 {
-    public static boolean writeCode(Application application, String inputPath) 
+    public static boolean writeCode(Application application) 
            throws IOException, InvalidKeyAmountException, 
                   EntityNotFoundException, InvalidMultiplicityException
     {
-        String fileContent = IOService.readAllLines(inputPath);
+        String fileContent = IOService.readAllLines(application);
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
         List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         

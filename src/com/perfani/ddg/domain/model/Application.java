@@ -8,6 +8,8 @@ public class Application
 	
 	private String applicationName;
 	
+	private String dataModelPath;
+	
 	private String setupPath;
 	
 	private TechnologyType type;
@@ -43,6 +45,20 @@ public class Application
     {
 	    this.applicationName = applicationName;
     }
+
+	/**
+	 * @return the dataModelPath
+	 */
+	public String getDataModelPath() {
+		return dataModelPath;
+	}
+
+	/**
+	 * @param dataModelPath the dataModelPath to set
+	 */
+	public void setDataModelPath(String dataModelPath) {
+		this.dataModelPath = dataModelPath;
+	}
 
 	/**
 	 * @return the setupPath

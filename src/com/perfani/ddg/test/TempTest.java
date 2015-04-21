@@ -65,7 +65,7 @@ public class TempTest
         
         try
         {
-            FileController.writeCode(app, "/home/douglas/input.txt");
+            FileController.writeCode(app);
         }
         catch (IOException e)
         {
