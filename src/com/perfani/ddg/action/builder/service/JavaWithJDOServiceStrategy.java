@@ -31,16 +31,16 @@ public class JavaWithJDOServiceStrategy implements IServiceBuilder
         StringBuilder serviceInterface = new StringBuilder();
         StringBuilder serviceClass = new StringBuilder();
         
-        serviceInterface.append(getInterfacePackage());
+        serviceInterface.append(getInterfacePackage(application));
         serviceInterface.append("\n\n");
-        serviceInterface.append(getInterfaceImports(entity));
+        serviceInterface.append(getInterfaceImports(application, entity));
         serviceInterface.append("\n\n");
         serviceInterface.append(getInterfaceContent(entity));
         outputArray[0] = serviceInterface.toString();
         
-        serviceClass.append(getClassPackage());
+        serviceClass.append(getClassPackage(application));
         serviceClass.append("\n\n");
-        serviceClass.append(getClassImports(entity));
+        serviceClass.append(getClassImports(application, entity));
         serviceClass.append("\n\n");
         serviceClass.append(getClassContent(entity));
         outputArray[1] = serviceClass.toString();
@@ -48,40 +48,58 @@ public class JavaWithJDOServiceStrategy implements IServiceBuilder
         return outputArray;
     }
     
-    private String getInterfacePackage()
+    private String getInterfacePackage(Application app)
     {
-        return "package com.company.app.domain.interfaces.services;";
+        return String.format("package com.%s.%s.domain.interfaces.services;", 
+			                 app.getCompanyName(), 
+			                 app.getApplicationName());
     }
     
-    private String getInterfaceImports(Entity entity)
+    private String getInterfaceImports(Application app, Entity entity)
     {
-        return "import com.company.app.domain.entity." + entity.getName() +";";
+        return String.format("import com.%s.%s.domain.entity.%s;", 
+			                 app.getCompanyName(), 
+			                 app.getApplicationName(), 
+			                 entity.getName());
     }
     
     private String getInterfaceContent(Entity entity)
     {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("public interface I" + entity.getName() + "Service\n");
-        sb.append("\textends IServiceBase<" + entity.getName() + ">\n");
+        sb.append(String.format("public interface I%sService\n", entity.getName()));
+        sb.append(String.format("\textends IServiceBase<%s>\n", entity.getName()));        
         sb.append("{\n\n}");
         
         return sb.toString();
     }
     
-    private String getClassPackage()
+    private String getClassPackage(Application app)
     {
-        return "package com.company.app.domain.services;";    
+        return String.format("package com.%s.%s.domain.services;", 
+        					 app.getCompanyName(), 
+        					 app.getApplicationName());    
     }
     
-    private String getClassImports(Entity entity)
+    private String getClassImports(Application app, Entity entity)
     {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("import com.company.app.domain.entity." + entity.getName() + ";\n");
-        sb.append("import com.company.app.domain.interfaces.repositories.I" + entity.getName() + "Repository;\n");
-        sb.append("import com.company.app.domain.interfaces.services.I" + entity.getName() + "Service");
+        sb.append(String.format("import com.%s.%s.domain.entity.%s;\n", 
+				                app.getCompanyName(), 
+				                app.getApplicationName(), 
+				                entity.getName()));
         
+        sb.append(String.format("import com.%s.%s.domain.interfaces.repositories.I%sRepository;\n", 
+				                app.getCompanyName(), 
+				                app.getApplicationName(), 
+				                entity.getName()));
+        
+        sb.append(String.format("import com.%s.%s.domain.interfaces.services.I%sService", 
+				                app.getCompanyName(), 
+				                app.getApplicationName(), 
+				                entity.getName()));
+        	
         return sb.toString();
     }
     
