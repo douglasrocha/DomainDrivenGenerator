@@ -28,12 +28,12 @@ public class BaseWriter
         String cirepo = IOService.readAllLines(irepo);
         
         // Write files to their own directories
-        IOService.writeFile(AppDirectories.AppPath.toString(application), capp);
-        IOService.writeFile(AppDirectories.AppInterfacePath.toString(application), ciapp);
-        IOService.writeFile(AppDirectories.DomainServicePath.toString(application), cserv);
-        IOService.writeFile(AppDirectories.DomainServiceInterfacesPath.toString(application), ciserv);
-        IOService.writeFile(AppDirectories.RepositoriesPath.toString(application), crepo);
-        IOService.writeFile(AppDirectories.DomainRepoInterfacesPath.toString(application), cirepo);
+        IOService.writeFile(AppDirectories.AppPath.toString(application) + "AppServiceBase", capp);
+        IOService.writeFile(AppDirectories.AppInterfacePath.toString(application) + "IAppServiceBase", ciapp);
+        IOService.writeFile(AppDirectories.DomainServicePath.toString(application) + "ServiceBase", cserv);
+        IOService.writeFile(AppDirectories.DomainServiceInterfacesPath.toString(application) + "IServiceBase", ciserv);
+        IOService.writeFile(AppDirectories.RepositoriesPath.toString(application) + "RepositoryBase", crepo);
+        IOService.writeFile(AppDirectories.DomainRepoInterfacesPath.toString(application) + "IRepositoryBase", cirepo);
     }	
 
 }

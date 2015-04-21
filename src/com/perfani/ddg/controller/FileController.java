@@ -44,13 +44,10 @@ public class FileController
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
         List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         
-        if (!DomainDrivenIO.createRootDirectories(application))
-        {
-            throw new IOException("Unable to write root directories!");
-        }
+        DomainDrivenIO.createRootDirectories(application);
         
         // Create base files
-        //BaseWriter.writeBaseFiles(application);
+        BaseWriter.writeBaseFiles(application);
         
         // Write entity specific files (domain entity, repository, service, appservice)
         for (Entity entity : listEntities)

@@ -25,104 +25,63 @@ import com.perfani.ddg.service.IOService;
 
 public class DomainDrivenIO
 {    
-    public static boolean createRootDirectories(Application application)
-    {
-         boolean success = true;
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());        
-        
+    public static void createRootDirectories(Application application) throws IOException
+    {        
          for (AppDirectories item : AppDirectories.values())
          {
-             if (!IOService.createFolder(parsedPath + item.toString(application)))
+             if (!IOService.createFolder(item.toString(application)))
              {
-            	 success = false;
-                 break;
+            	 throw new IOException("Unable to write all root directories!");
              }
          }
-        
-         return success;
-    }
-    
-    private static String addsSlashIfNecessary(String path)
-    {
-         String parsedPath = path;
-         
-         if (!path.endsWith("/") && !path.endsWith("\\"))
-         {
-             parsedPath += System.getProperty("os.name")
-                                 .toLowerCase()
-                                 .contains("windows") ? "\\" : "/";
-         }
-        
-         return parsedPath;
     }
     
     public static void saveEntityFile(Application application, Entity entity, 
                                       String content) throws IOException 
     {    
-         String prefix = AppDirectories.EntityPath.toString(application);
-       
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + ".java";
-         IOService.writeFile(parsedPath, content);
+         String path = AppDirectories.EntityPath.toString(application) + entity.getName()+ ".java";
+         IOService.writeFile(path, content);
     }
     
     public static void saveInterfaceRepositoryFile(Application application, Entity entity, 
                                                    String content) throws IOException 
     {
-         String prefix = AppDirectories.DomainRepoInterfacesPath.toString(application);
-        
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "Repository.java";
-         IOService.writeFile(parsedPath, content);
+    	 String path = AppDirectories.DomainRepoInterfacesPath.toString(application) + "I" + entity.getName() + "Repository.java";
+         IOService.writeFile(path, content);
     }
     
     public static void saveRepositoryFile(Application application, Entity entity, 
                                           String content) throws IOException 
     {
-         String prefix = AppDirectories.RepositoriesPath.toString(application);
-          
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "Repository.java";
-         IOService.writeFile(parsedPath, content);
+    	String path = AppDirectories.RepositoriesPath.toString(application) + entity.getName() + "Repository.java";
+        IOService.writeFile(path, content);
     }
      
     public static void saveInterfaceServiceFile(Application application, Entity entity,  
                                                 String content) throws IOException 
     {
-         String prefix = AppDirectories.DomainServiceInterfacesPath.toString(application);
-         
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "Service.java";
-         IOService.writeFile(parsedPath, content);
+    	 String path = AppDirectories.DomainServiceInterfacesPath.toString(application) + "I" + entity.getName() + "Service.java";
+         IOService.writeFile(path, content);
     }
      
     public static void saveServiceFile(Application application, Entity entity, 
                                        String content) throws IOException 
     {
-    	 String prefix = AppDirectories.DomainServicePath.toString(application);
-     
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "Service.java";
-         IOService.writeFile(parsedPath, content);
+    	 String path = AppDirectories.DomainServicePath.toString(application) + entity.getName() + "Service.java";
+         IOService.writeFile(path, content);
     }
       
     public static void saveInterfaceAppServiceFile(Application application, Entity entity, 
                                                    String content) throws IOException 
     {
-         String prefix = AppDirectories.AppInterfacePath.toString(application);
-          
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "AppService.java";
-         IOService.writeFile(parsedPath, content);
+    	 String path = AppDirectories.AppInterfacePath.toString(application) + "I" + entity.getName() + "Service.java";
+         IOService.writeFile(path, content);
     }
       
     public static void saveAppServiceFile(Application application, Entity entity,  
                                           String content) throws IOException 
     {
-         String prefix = AppDirectories.AppPath.toString(application);
-          
-         String parsedPath = addsSlashIfNecessary(application.getSetupPath());
-         parsedPath += prefix + entity.getName() + "AppService.java";
-         IOService.writeFile(parsedPath, content);
+    	 String path = AppDirectories.AppPath.toString(application) + entity.getName() + "Service.java";
+         IOService.writeFile(path, content);
     }
 }

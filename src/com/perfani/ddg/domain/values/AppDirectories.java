@@ -1,5 +1,7 @@
 package com.perfani.ddg.domain.values;
 
+import java.io.File;
+
 import com.perfani.ddg.domain.model.Application;
 import com.perfani.ddg.service.OSService;
 
@@ -37,7 +39,20 @@ public enum AppDirectories
     
     public String toString(Application application) 
     {
-        return replaceSlashesInWindows(replaceGenericCompanyAndAppName(application, text));
+        return  addsSlashIfNecessary(application.getSetupPath()) 
+        		+ replaceSlashesInWindows(replaceGenericCompanyAndAppName(application, text));
+    }
+    
+    private String addsSlashIfNecessary(String path)
+    {
+         String parsedPath = path;
+         
+         if (!path.endsWith("/") && !path.endsWith("\\"))
+         {
+             parsedPath += File.separator;
+         }
+        
+         return parsedPath;
     }
     
     private String replaceGenericCompanyAndAppName(Application application, String path)
@@ -49,10 +64,5 @@ public enum AppDirectories
     private String replaceSlashesInWindows(String path)
     {
     	 return OSService.isWindows() ? path.replace("/", "\\") : path;
-    }
-    
-    public AppDirectories[] lala()
-    {
-    	return AppDirectories.values();
     }
 }
