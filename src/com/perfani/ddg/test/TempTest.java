@@ -60,11 +60,12 @@ public class TempTest
         Application app = new Application();
         app.setCompanyName("my");
         app.setApplicationName("wow");
+        app.setSetupPath("/home/douglas/output");
         app.setType(TechnologyType.JavaWithJdo);
         
         try
         {
-            FileController.writeCode(app, "/home/douglas/input.txt", "/home/douglas/output");
+            FileController.writeCode(app, "/home/douglas/input.txt");
         }
         catch (IOException e)
         {

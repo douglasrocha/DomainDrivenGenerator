@@ -8,6 +8,8 @@ public class Application
 	
 	private String applicationName;
 	
+	private String setupPath;
+	
 	private TechnologyType type;
 
 	/**
@@ -41,6 +43,22 @@ public class Application
     {
 	    this.applicationName = applicationName;
     }
+
+	/**
+	 * @return the setupPath
+	 */
+	public String getSetupPath() 
+	{
+		return setupPath;
+	}
+
+	/**
+	 * @param setupPath the setupPath to set
+	 */
+	public void setSetupPath(String setupPath) 
+	{
+		this.setupPath = setupPath;
+	}
 
 	/**
 	 * @return the type

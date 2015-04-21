@@ -35,7 +35,7 @@ import com.perfani.ddg.service.IOService;
 
 public class FileController
 {
-    public static boolean writeCode(Application application, String inputPath, String outputPath) 
+    public static boolean writeCode(Application application, String inputPath) 
            throws IOException, InvalidKeyAmountException, 
                   EntityNotFoundException, InvalidMultiplicityException
     {
@@ -43,7 +43,7 @@ public class FileController
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
         List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         
-        if (!DomainDrivenIO.createRootDirectories(application, outputPath))
+        if (!DomainDrivenIO.createRootDirectories(application))
         {
             throw new IOException("Unable to write root directories!");
         }
@@ -65,17 +65,17 @@ public class FileController
             String[] strAppService = appServiceBuilder.execute(application, entity, listRelationship);
             
             // Saves entity content to file
-            DomainDrivenIO.saveEntityFile(application, entity, outputPath, strEntity);
+            DomainDrivenIO.saveEntityFile(application, entity, strEntity);
             
             // Saves interfaces from repository, service and app service to file
-            DomainDrivenIO.saveInterfaceRepositoryFile(application, entity, outputPath, strRepository[0]);
-            DomainDrivenIO.saveInterfaceServiceFile(application, entity, outputPath, strService[0]);
-            DomainDrivenIO.saveInterfaceAppServiceFile(application, entity, outputPath, strAppService[0]);
+            DomainDrivenIO.saveInterfaceRepositoryFile(application, entity, strRepository[0]);
+            DomainDrivenIO.saveInterfaceServiceFile(application, entity, strService[0]);
+            DomainDrivenIO.saveInterfaceAppServiceFile(application, entity, strAppService[0]);
             
             // Saves classes from repository, service and app service to file
-            DomainDrivenIO.saveRepositoryFile(application, entity, outputPath, strRepository[1]);
-            DomainDrivenIO.saveServiceFile(application, entity, outputPath, strService[1]);
-            DomainDrivenIO.saveAppServiceFile(application, entity, outputPath, strAppService[1]);
+            DomainDrivenIO.saveRepositoryFile(application, entity, strRepository[1]);
+            DomainDrivenIO.saveServiceFile(application, entity, strService[1]);
+            DomainDrivenIO.saveAppServiceFile(application, entity, strAppService[1]);
         }
         
         return true;

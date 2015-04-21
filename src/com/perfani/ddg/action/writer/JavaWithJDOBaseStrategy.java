@@ -8,5 +8,6 @@ public class JavaWithJDOBaseStrategy implements IBaseWriter
     public void execute(Application application)
     {
 		
+		
     }
 }
