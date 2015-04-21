@@ -20,62 +20,26 @@ import java.io.IOException;
 
 import com.perfani.ddg.domain.model.Application;
 import com.perfani.ddg.domain.model.Entity;
+import com.perfani.ddg.domain.values.AppDirectories;
 import com.perfani.ddg.service.IOService;
-import com.perfani.ddg.service.OSService;
 
 public class DomainDrivenIO
-{
-    private final static String[] _paths = 
-    {
-         "src",
-         "src/com",
-         "src/com/company",
-         "src/com/company/myapp",
-         "src/com/company/myapp/application",
-         "src/com/company/myapp/application/interfaces",
-         "src/com/company/myapp/domain",
-         "src/com/company/myapp/domain/entity",
-         "src/com/company/myapp/domain/interfaces",
-         "src/com/company/myapp/domain/interfaces/repositories",
-         "src/com/company/myapp/domain/interfaces/services",
-         "src/com/company/myapp/domain/services",
-         "src/com/company/myapp/infra",
-         "src/com/company/myapp/infra/data",
-         "src/com/company/myapp/infra/data/repositories",
-    };
-    
+{    
     public static boolean createRootDirectories(Application application, String path)
     {
          boolean success = true;
          String parsedPath = addsSlashIfNecessary(path);        
         
-         for (String item : _paths)
+         for (AppDirectories item : AppDirectories.values())
          {
-        	 String parsed_item = replaceGenericCompanyAndAppName(application, item);
-        	
-             success = IOService.createFolder
-             (
-                 parsedPath + (OSService.isWindows() ? parsed_item.replace("/", "\\") : parsed_item)
-             );
-            
-             if (!success)
+             if (!IOService.createFolder(parsedPath + item.toString(application)))
              {
+            	 success = false;
                  break;
              }
          }
         
          return success;
-    }
-    
-    private static String replaceGenericCompanyAndAppName(Application application, String path)
-    {
-    	 return path.replace("company", application.getCompanyName())
-    	   		    .replace("myapp", application.getApplicationName());
-    }
-    
-    private static String replaceSlashesInWindows(String path)
-    {
-    	 return OSService.isWindows() ? path.replace("/", "\\") : path;
     }
     
     private static String addsSlashIfNecessary(String path)
@@ -95,9 +59,7 @@ public class DomainDrivenIO
     public static void saveEntityFile(Application application, Entity entity, 
                                       String path, String content) throws IOException 
     {    
-         String prefix = "src/com/company/myapp/domain/entity/";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.EntityPath.toString(application);
        
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + ".java";
@@ -107,9 +69,7 @@ public class DomainDrivenIO
     public static void saveInterfaceRepositoryFile(Application application, Entity entity, 
                                                    String path, String content) throws IOException 
     {
-         String prefix = "src/com/company/myapp/domain/interfaces/repositories/I";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.DomainRepoInterfacesPath.toString(application);
         
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Repository.java";
@@ -119,9 +79,7 @@ public class DomainDrivenIO
     public static void saveRepositoryFile(Application application, Entity entity, 
                                           String path, String content) throws IOException 
     {
-         String prefix = "src/com/company/myapp/infra/data/repositories/";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.RepositoriesPath.toString(application);
           
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Repository.java";
@@ -131,9 +89,7 @@ public class DomainDrivenIO
     public static void saveInterfaceServiceFile(Application application, Entity entity, String path, 
                                                 String content) throws IOException 
     {
-         String prefix = "src/com/company/myapp/domain/interfaces/services/I";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.DomainServiceInterfacesPath.toString(application);
          
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
@@ -143,9 +99,7 @@ public class DomainDrivenIO
     public static void saveServiceFile(Application application, Entity entity, String path, 
                                        String content) throws IOException 
     {
-    	 String prefix = "src/com/company/myapp/domain/services/";
-    	 prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+    	 String prefix = AppDirectories.DomainServicePath.toString(application);
      
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "Service.java";
@@ -155,9 +109,7 @@ public class DomainDrivenIO
     public static void saveInterfaceAppServiceFile(Application application, Entity entity, 
                                                    String path, String content) throws IOException 
     {
-         String prefix = "src/com/company/myapp/application/interfaces/I";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.AppInterfacePath.toString(application);
           
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "AppService.java";
@@ -167,9 +119,7 @@ public class DomainDrivenIO
     public static void saveAppServiceFile(Application application, Entity entity, String path, 
                                           String content) throws IOException 
     {
-         String prefix = "src/com/company/myapp/application/";
-         prefix = replaceSlashesInWindows(prefix);
-         prefix = replaceGenericCompanyAndAppName(application, prefix);
+         String prefix = AppDirectories.AppPath.toString(application);
           
          String parsedPath = addsSlashIfNecessary(path);
          parsedPath += prefix + entity.getName() + "AppService.java";

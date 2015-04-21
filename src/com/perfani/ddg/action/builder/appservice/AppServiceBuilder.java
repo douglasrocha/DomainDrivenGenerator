@@ -21,7 +21,7 @@ import java.util.List;
 import com.perfani.ddg.domain.model.Application;
 import com.perfani.ddg.domain.model.Entity;
 import com.perfani.ddg.domain.model.Relationship;
-import com.perfani.ddg.values.TechnologyType;
+import com.perfani.ddg.domain.values.TechnologyType;
 
 public class AppServiceBuilder
 {

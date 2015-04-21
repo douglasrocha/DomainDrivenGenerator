@@ -1,6 +1,6 @@
 package com.perfani.ddg.domain.model;
 
-import com.perfani.ddg.values.TechnologyType;
+import com.perfani.ddg.domain.values.TechnologyType;
 
 public class Application
 {

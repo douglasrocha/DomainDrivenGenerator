@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.perfani.ddg.values;
+package com.perfani.ddg.domain.values;
 
 public enum TechnologyType
 {
