@@ -73,6 +73,11 @@ public class DomainDrivenIO
     			   .replace("myapp", application.getApplicationName());
     }
     
+    private static String replaceSlashesInWindows(String path)
+    {
+    	return OSService.isWindows() ? path.replace("/", "\\") : path;
+    }
+    
     private static String addsSlashIfNecessary(String path)
     {
         String parsedPath = path;
@@ -89,7 +94,7 @@ public class DomainDrivenIO
     								  String path, String content) throws IOException 
     {
         String prefix = "src/com/company/myapp/domain/entity/";
-        prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = replaceSlashesInWindows(prefix);
         prefix = replaceGenericCompanyAndAppName(application, prefix);
         
         String parsedPath = addsSlashIfNecessary(path);
@@ -101,7 +106,7 @@ public class DomainDrivenIO
     											   String path, String content) throws IOException 
      {
         String prefix = "src/com/company/myapp/domain/interfaces/repositories/I";
-        prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = replaceSlashesInWindows(prefix);
         prefix = replaceGenericCompanyAndAppName(application, prefix);
         
         String parsedPath = addsSlashIfNecessary(path);
@@ -113,7 +118,7 @@ public class DomainDrivenIO
     		 							   String path, String content) throws IOException 
      {
         String prefix = "src/com/company/myapp/infra/data/repositories/";
-        prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+        prefix = replaceSlashesInWindows(prefix);
         prefix = replaceGenericCompanyAndAppName(application, prefix);
          
         String parsedPath = addsSlashIfNecessary(path);
@@ -125,7 +130,7 @@ public class DomainDrivenIO
     		 									 String path, String content) throws IOException 
       {
          String prefix = "src/com/company/myapp/domain/interfaces/services/I";
-         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+         prefix = replaceSlashesInWindows(prefix);
          prefix = replaceGenericCompanyAndAppName(application, prefix);
          
          String parsedPath = addsSlashIfNecessary(path);
@@ -137,7 +142,7 @@ public class DomainDrivenIO
     		  							 String path, String content) throws IOException 
       {
          String prefix = "src/com/company/myapp/domain/services/";
-         prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+         prefix = replaceSlashesInWindows(prefix);
          prefix = replaceGenericCompanyAndAppName(application, prefix);
          
          String parsedPath = addsSlashIfNecessary(path);
@@ -149,7 +154,7 @@ public class DomainDrivenIO
     		  										 String path, String content) throws IOException 
        {
           String prefix = "src/com/company/myapp/application/interfaces/I";
-          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+          prefix = replaceSlashesInWindows(prefix);
           prefix = replaceGenericCompanyAndAppName(application, prefix);
           
           String parsedPath = addsSlashIfNecessary(path);
@@ -161,7 +166,7 @@ public class DomainDrivenIO
     		   								 String path, String content) throws IOException 
        {
           String prefix = "src/com/company/myapp/application/";
-          prefix = OSService.isWindows() ? prefix.replace("/", "\\") : prefix;
+          prefix = replaceSlashesInWindows(prefix);
           prefix = replaceGenericCompanyAndAppName(application, prefix);
           
           String parsedPath = addsSlashIfNecessary(path);
