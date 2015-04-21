@@ -16,14 +16,18 @@
 
 package com.perfani.ddg.action.builder.entity;
 
+import java.util.List;
+
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
 import com.perfani.ddg.model.Field;
+import com.perfani.ddg.model.Relationship;
 import com.perfani.ddg.utils.StringService;
 
 public class JavaWithJDOEntityStrategy implements IEntityBuilder
 {
     @Override
-    public String execute(Entity entity)
+    public String execute(Application application, Entity entity, List<Relationship> rel)
     {
         StringBuilder entityClass = new StringBuilder();
         

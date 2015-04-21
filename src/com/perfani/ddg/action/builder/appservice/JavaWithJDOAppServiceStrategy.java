@@ -16,12 +16,16 @@
 
 package com.perfani.ddg.action.builder.appservice;
 
+import java.util.List;
+
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.model.Relationship;
 
 public class JavaWithJDOAppServiceStrategy implements IAppServiceBuilder
 {
     @Override
-    public String[] execute(Entity entity)
+    public String[] execute(Application application, Entity entity, List<Relationship> rel)
     {
         String[] outputArray = new String[2];
         StringBuilder serviceInterface = new StringBuilder();

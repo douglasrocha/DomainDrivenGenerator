@@ -16,9 +16,13 @@
 
 package com.perfani.ddg.action.builder.entity;
 
+import java.util.List;
+
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.model.Relationship;
 
 public interface IEntityBuilder
 {
-    String execute(Entity entity);
+    String execute(Application application, Entity entity, List<Relationship> rel);
 }

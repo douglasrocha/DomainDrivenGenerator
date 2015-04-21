@@ -30,6 +30,7 @@ import com.perfani.ddg.exceptions.InvalidKeyAmountException;
 import com.perfani.ddg.exceptions.InvalidMultiplicityException;
 import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.model.Relationship;
 import com.perfani.ddg.utils.IOService;
 
 public class FileController
@@ -40,7 +41,7 @@ public class FileController
     {
         String fileContent = IOService.readAllLines(inputPath);
         List<Entity> listEntities = Parser.GetAllEntities(fileContent);
-        //List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
+        List<Relationship> listRelationship = Parser.GetAllRelationships(listEntities, fileContent);
         
         if (!DomainDrivenIO.createRootDirectories(application, outputPath))
         {
@@ -54,10 +55,10 @@ public class FileController
             ServiceBuilder serviceBuilder = new ServiceBuilder(application.getType());
             AppServiceBuilder appServiceBuilder = new AppServiceBuilder(application.getType());
             
-            String strEntity = entityBuilder.execute(entity);
-            String[] strRepository = repositoryBuilder.execute(entity);
-            String[] strService = serviceBuilder.execute(entity);
-            String[] strAppService = appServiceBuilder.execute(entity);
+            String strEntity = entityBuilder.execute(application, entity, listRelationship);
+            String[] strRepository = repositoryBuilder.execute(application, entity, listRelationship);
+            String[] strService = serviceBuilder.execute(application, entity, listRelationship);
+            String[] strAppService = appServiceBuilder.execute(application, entity, listRelationship);
             
             // Saves entity content to file
             DomainDrivenIO.saveEntityFile(application, entity, outputPath, strEntity);

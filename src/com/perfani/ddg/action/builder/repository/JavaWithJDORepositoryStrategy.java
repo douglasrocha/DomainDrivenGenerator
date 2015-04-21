@@ -16,12 +16,16 @@
 
 package com.perfani.ddg.action.builder.repository;
 
+import java.util.List;
+
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.model.Relationship;
 
 public class JavaWithJDORepositoryStrategy implements IRepositoryBuilder
 {
     @Override
-    public String[] execute(Entity entity)
+    public String[] execute(Application application, Entity entity, List<Relationship> rel)
     {
         String[] outputArray = new String[2];
         StringBuilder repositoryInterface = new StringBuilder();

@@ -16,7 +16,11 @@
 
 package com.perfani.ddg.action.builder.entity;
 
+import java.util.List;
+
+import com.perfani.ddg.model.Application;
 import com.perfani.ddg.model.Entity;
+import com.perfani.ddg.model.Relationship;
 import com.perfani.ddg.values.TechnologyType;
 
 public class EntityBuilder
@@ -36,8 +40,8 @@ public class EntityBuilder
     	}
     }
     
-    public String execute(Entity entity)
+    public String execute(Application application, Entity entity, List<Relationship> rel)
     {
-        return _strategy.execute(entity);
+        return _strategy.execute(application, entity, rel);
     }
 }
