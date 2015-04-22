@@ -45,7 +45,7 @@ public class Relationship
     /**
      * @return the nFrom
      */
-    public String getnFrom()
+    public String getNFrom()
     {
         return nFrom;
     }
@@ -53,7 +53,7 @@ public class Relationship
     /**
      * @param nFrom the nFrom to set
      */
-    public void setnFrom(String nFrom)
+    public void setNFrom(String nFrom)
     {
         this.nFrom = nFrom;
     }
@@ -77,7 +77,7 @@ public class Relationship
     /**
      * @return the nTo
      */
-    public String getnTo()
+    public String getNTo()
     {
         return nTo;
     }
@@ -85,7 +85,7 @@ public class Relationship
     /**
      * @param nTo the nTo to set
      */
-    public void setnTo(String nTo)
+    public void setNTo(String nTo)
     {
         this.nTo = nTo;
     }

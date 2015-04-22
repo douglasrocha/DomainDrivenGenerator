@@ -121,7 +121,7 @@ public class Parser
             
             // Gets entity and multiplicity on the left
             Entity leftEntity = null;
-            String parsedLeft = explodedRel[0].trim().replace("[", "").replace("]", "");
+            String parsedLeft = explodedRel[0].trim().replace("[", "").replace("]", " ");
             String[] explodedLeft = parsedLeft.split(" ");
             
             for(Entity entity : listEntities)
@@ -137,22 +137,22 @@ public class Parser
                 throw new EntityNotFoundException();
             }
             
-            if (explodedLeft[1] != "1" && explodedLeft[1] != "*")
+            if (!(explodedLeft[1].equals("1") || explodedLeft[1].equals("*")))
             {
                 throw new InvalidMultiplicityException();
             }
 
             relationship.setFrom(leftEntity);
-            relationship.setnFrom(explodedLeft[1]);
+            relationship.setNFrom(explodedLeft[1]);
             
             // Gets entity and multiplicity on the left
             Entity rightEntity = null;
-            String parsedRight = explodedRel[1].trim().replace("[", "").replace("]", "");
+            String parsedRight = explodedRel[1].trim().replace("[", " ").replace("]", "");
             String[] explodedRight = parsedRight.split(" ");
             
             for(Entity entity : listEntities)
             {
-                if (entity.getName().equals(explodedRight[0].trim()))
+                if (entity.getName().equals(explodedRight[1].trim()))
                 {
                     rightEntity = entity;
                 }
@@ -163,13 +163,15 @@ public class Parser
                 throw new EntityNotFoundException();
             }
             
-            if (explodedRight[1] != "1" && explodedRight[1] != "*")
+            if (!(explodedRight[0].equals("1") || explodedRight[0].equals("*")))
             {
                 throw new InvalidMultiplicityException();
             }
             
             relationship.setTo(rightEntity);
-            relationship.setnTo(explodedRight[1]);
+            relationship.setNTo(explodedRight[0]);
+            
+            listRelationship.add(relationship);
         }
         
         return listRelationship;
