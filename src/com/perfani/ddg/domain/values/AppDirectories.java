@@ -17,34 +17,40 @@
 package com.perfani.ddg.domain.values;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import com.perfani.ddg.domain.model.Application;
 import com.perfani.ddg.service.OSService;
 
 public enum AppDirectories 
 {
-	SrcPath("src/"),
-	ComPath("src/com/"),
-	CompanyPath("src/com/company/"),
-	MyAppPath("src/com/company/myapp/"),
-	AppPath("src/com/company/myapp/application/"),
-	AppInterfacePath("src/com/company/myapp/application/interfaces/"),
-	DomainPath("src/com/company/myapp/domain/"),
-	EntityPath("src/com/company/myapp/domain/entity/"),
-	DomainInterfacePath("src/com/company/myapp/domain/interfaces/"),
-	DomainRepoInterfacesPath("src/com/company/myapp/domain/interfaces/repositories/"),
-	DomainServiceInterfacesPath("src/com/company/myapp/domain/interfaces/services/"),
-	DomainServicePath("src/com/company/myapp/domain/services/"),
-	InfraPath("src/com/company/myapp/infra/"),
-	DataPath("src/com/company/myapp/infra/data/"),
-	RepositoriesPath("src/com/company/myapp/infra/data/repositories/")
+	SrcPath("SrcPath"),
+	ComPath("ComPath"),
+	CompanyPath("CompanyPath"),
+	MyAppPath("MyAppPath"),
+	AppPath("AppPath"),
+	AppInterfacePath("AppInterfacePath"),
+	DomainPath("DomainPath"),
+	EntityPath("EntityPath"),
+	DomainInterfacePath("DomainInterfacePath"),
+	DomainRepoInterfacesPath("DomainRepoInterfacesPath"),
+	DomainServiceInterfacesPath("DomainServiceInterfacesPath"),
+	DomainServicePath("DomainServicePath"),
+	InfraPath("InfraPath"),
+	DataPath("DataPath"),
+	RepositoriesPath("RepositoriesPath")
     ;
 
     private final String text;
+    private final TechnologyType technologyType;
+    private Properties properties;
 
     private AppDirectories(final String text) 
     {
         this.text = text;
+        this.technologyType = null;
     }
 
     @Override
@@ -53,10 +59,19 @@ public enum AppDirectories
         return text;
     }
     
-    public String toString(Application application) 
-    {
+    public String toString(Application application) throws IOException 
+    {       
+        if (technologyType == null || !technologyType.equals(application.getType()))
+        {
+            this.properties = new Properties();
+            FileInputStream propFile = new FileInputStream(application.getType().toString());
+            this.properties.load(propFile);
+        }
+        
+        String path = replaceSlashesInWindows(properties.getProperty(text));        
+        
         return  addsSlashIfNecessary(application.getSetupPath()) 
-        		+ replaceSlashesInWindows(replaceGenericCompanyAndAppName(application, text));
+        		+ replaceSlashesInWindows(replaceGenericCompanyAndAppName(application, path));
     }
     
     private String addsSlashIfNecessary(String path)

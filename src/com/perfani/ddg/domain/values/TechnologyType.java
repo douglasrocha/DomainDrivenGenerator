@@ -18,6 +18,20 @@ package com.perfani.ddg.domain.values;
 
 public enum TechnologyType
 {
-	JavaWithJdo,
-	CSharpWithAWS
+	JavaWithJdo("properties/JavaWithJDO.properties"),
+	CSharpWithAWS("properties/CSharpWithAWS.properties")
+	;
+	
+	private final String text;
+    
+    private TechnologyType(final String text)
+    {
+        this.text = text;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return text;
+    }
 }

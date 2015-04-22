@@ -32,8 +32,8 @@ public class TempTest
         Application app = new Application();
         app.setCompanyName("my");
         app.setApplicationName("wow");
-        app.setDataModelPath("/home/douglas/input.txt");
-        app.setSetupPath("/home/douglas/output");
+        app.setDataModelPath("D:\\input\\teste.txt");
+        app.setSetupPath("D:\\output");
         app.setType(TechnologyType.JavaWithJdo);
         
         try
